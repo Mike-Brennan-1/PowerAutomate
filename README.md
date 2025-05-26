@@ -2,6 +2,30 @@
 >Integrating Dataverse & SharePoint with batched HTTP requests in Power Automate for cross-tenant, automated email campaigns.
 
 ## Contents
+- [Overview](#overview)
+- [Use Case](#use-case)
+- [How it works](#how-it-works)
+  - [Flow A](#flow-a)
+    - [Trigger](#trigger)
+    - [SharePoint List](#sharepoint-list)
+    - [Check if emails scheduled for today](#check-if-emails-scheduled-for-today)
+    - [Get inline image content](#get-inline-image-content)
+    - [Loop over each email](#loop-over-each-email)
+    - [Construct dynamic OData filter queries](#construct-dynamic-odata-filter-queries)
+      - [Store the items from the `audience` column in an array variable](#store-the-items-from-the-audience-column-in-an-array-variable)
+      - [Use condition actions to construct another array variable](#use-condition-actions-to-construct-another-array-variable)
+      - [Use a Compose action to create the $filter query](#use-a-compose-action-to-create-the-filter-query)
+      - [Pass dynamic filter query in List Rows action](#pass-dynamic-filter-query-in-list-rows-action)
+      - [Store emails and names as an array of objects](#store-emails-and-names-as-an-array-of-objects)
+    - [Get attachments](#get-attachments)
+    - [Make HTTP request](#make-http-request)
+  - [Flow B](#flow-b)
+    - [Trigger](#trigger)
+    - [Send email](#send-email)
+      - [Add email signature inline image](#add-email-signature-inline-image)
+      - [Add attachments](#add-attachments)
+- [What I learned](#what_i_learned)
+- [Contact](#contact)      
 
 ## Overview
 This project automates subscriber engagement emails using two Power Automate flows across separate Microsoft tenants. Flow A runs daily, checks a SharePoint list where email content and audience details are stored, and constructs dynamic OData filter queries to extract subscriber data from Dataverse (Dynamics 365 CRM). Finally, Flow A sends a single HTTP request to Flow B, triggering it. Flow B parses the POST request and sends the emails from its tenant.
@@ -259,4 +283,4 @@ The hard work is already done! Simply pass your `attachments_array` in the Send 
 ## Contact
 Written by Mike Brennan
 
-Connect with me on [LinkedIn]([(1) Michael Brennan | LinkedIn](https://www.linkedin.com/in/michael-brennan-22312014a/))
+Connect with me on [LinkedIn](https://www.linkedin.com/in/michael-brennan-22312014a/)
