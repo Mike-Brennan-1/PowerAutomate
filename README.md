@@ -100,7 +100,7 @@ If the response contains newlines, which is often the case in Power Automate, us
 replace(items('Apply_to_each_audience')?['Value'], '\n', '')
 ```
 
-**Note** - before the `Apply to each` loop, reset your variable as a blank array. If you don't, the variable will keep getting updated with all job roles for all scheduled emails, instead of the job roles for the current row in the SharePoint list. Remember, we are [[#Loop over each email|currently iterating over]] all of today's emails.
+**Note** - before the `Apply to each` loop, reset your variable as a blank array. If you don't, the variable will keep getting updated with all job roles for all scheduled emails, instead of the job roles for the current row in the SharePoint list. Remember, we are [currently iterating over](#loop-over-each-email) all of today's emails.
 
 **Also note** - You must initialise the variable at the start of the flow. Power automate does not allow you to initialise variables inside a loop.
 
@@ -153,7 +153,7 @@ If your SharePoint list has attachments, use the Get Attachments action.
 >Declare `attachment_array` as a blank variable at the start of the process. Remember to reset it outside of the Apply to each loop, otherwise it will keep getting updated with each email's attachments.
 
 For each attachment, append the following values to `attachment_array` using the following structure:
-^attachmentarraysyntax
+###### Attachment array syntax
 ```plaintext
 {
   "Name": "@{item()?['DisplayName']}",
@@ -172,11 +172,11 @@ Use the Make an HTTP request action with the following configuration.
 >- Method : POST
 >- Content-Type : `application/json`
 >- Body:
->	- `"to"` : your [[#Store emails and names as an array of objects|array of objects]] containing subscriber names and emails
+>	- `"to"` : your [array of objects](#store-emails-and-names-as-an-array-of-objects) containing subscriber names and emails
 >	- `"subject"` : the email subject line, passed directly from the SharePoint list
 >	- `"body"` : the email content, passed directly from the SharePoint list
->	- `"attachment_array"` : the array variable created in the [[#Get attachments|last step]] , containing attachment metadata and base-64 encoded content
->	- `"image_inline"` : the base-64 encoded content of your inline image, [[#Get inline image content|passed directly from a SharePoint file]]
+>	- `"attachment_array"` : the array variable created in the [last step](#get-attachments), containing attachment metadata and base-64 encoded content
+>	- `"image_inline"` : the base-64 encoded content of your inline image, [passed directly from a SharePoint file](#get-inline-image-content)
 >	- `"fromFlowName"` : *optional* - the name of the flow sending the request, for tracking purposes
 
 ## Flow B
@@ -244,7 +244,7 @@ Use the When an HTTP request is received trigger (requires Power Automate Premiu
 ```
 
 ### Send email
-Use an "Apply to each" loop, iterating over your `to` (which stores your [[#Store emails and names as an array of objects|`names_with_emails`]] array of objects). Use the following dynamic content in the Outlook Send an email (V2) action.
+Use an "Apply to each" loop, iterating over your `to` (which stores your [`names_with_emails`](#store-emails-and-names-as-an-array-of-objects). Use the following dynamic content in the Outlook Send an email (V2) action.
 
 ```JSON
 "parameters": {
@@ -272,13 +272,13 @@ The hard work is already done! Simply pass your `attachments_array` in the Send 
 
 ![image](https://github.com/user-attachments/assets/8b1ab824-6fc3-4608-b2eb-deeacb34ebfc)
 
->**Note**: If you find your attachments are corrupted or not attached when you receive the email, it is likely due to a malformed array. Ensure that the syntax is as specified in the [[#^attachmentarraysyntax|previous step]].
+>**Note**: If you find your attachments are corrupted or not attached when you receive the email, it is likely due to a malformed array. Ensure that the syntax is as specified in the [previous step](#attachment-array-syntax).
 
 ## What I learned
 - Within reason, Power Automate will do anything you want it to **if** you force it to. It's deceptively flexible at times; dynamic OData queries are a powerful tool, but they get messy fast without proper planning.
 - This was a fun use case for a low-code / no-code tool. Having said this, it's funny how "low-code" often translates to "debugging JSON at midnight" when your process logic is complex enough. Power Automate's UI can be frustrating at times, in that it allows you to peek the code, but altering it isn't always intuitive or possible. At times, I really felt this project would have gone a lot faster if I'd built it entirely in code.
 - Chaining condition blocks together to create the dynamic filter for `audience` worked in my use case, but it's not very scalable. If I were to build this again, I would look into more sophisticated mapping.
-- Corrupted attachments are the worst. Save yourself two days: use [[#^attachmentarraysyntax|this syntax.]]
+- Corrupted attachments are the worst. Save yourself two days: use [this syntax](#attachment-array-syntax).
 
 ## Contact
 Written by Mike Brennan
