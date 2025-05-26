@@ -14,7 +14,7 @@
     - [Construct dynamic OData filter queries](#construct-dynamic-odata-filter-queries)
       - [Store the items from the `audience` column in an array variable](#store-the-items-from-the-audience-column-in-an-array-variable)
       - [Use condition actions to construct another array variable](#use-condition-actions-to-construct-another-array-variable)
-      - [Use a Compose action to create the $filter query](#use-a-compose-action-to-create-the-filter-query)
+      - [Use a Compose action to create the $filter query](#use-a-compose-action-to-create-the-$filter-query)
       - [Pass dynamic filter query in List Rows action](#pass-dynamic-filter-query-in-list-rows-action)
       - [Store emails and names as an array of objects](#store-emails-and-names-as-an-array-of-objects)
     - [Get attachments](#get-attachments)
@@ -24,7 +24,7 @@
     - [Send email](#send-email)
       - [Add email signature inline image](#add-email-signature-inline-image)
       - [Add attachments](#add-attachments)
-- [What I learned](#what_i_learned)
+- [What I learned](#what-i-learned)
 - [Contact](#contact)      
 
 ## Overview
