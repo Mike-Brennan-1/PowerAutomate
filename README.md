@@ -14,7 +14,7 @@
     - [Construct dynamic OData filter queries](#construct-dynamic-odata-filter-queries)
       - [Store the items from the `audience` column in an array variable](#store-the-items-from-the-audience-column-in-an-array-variable)
       - [Use condition actions to construct another array variable](#use-condition-actions-to-construct-another-array-variable)
-      - [Use a Compose action to create the $filter query](#use-a-compose-action-to-create-the-$filter-query)
+      - [Use a Compose action to create the $filter query](#use-a-compose-action-to-create-the-filter-query)
       - [Pass dynamic filter query in List Rows action](#pass-dynamic-filter-query-in-list-rows-action)
       - [Store emails and names as an array of objects](#store-emails-and-names-as-an-array-of-objects)
     - [Get attachments](#get-attachments)
@@ -114,7 +114,7 @@ Chain condition actions together checking whether the given string is contained 
 
 This approach is slightly long-winded, and a more elegant approach might be to store the job role values in an object array and append them in bulk. I favoured my approach - firstly - because the mapping can get very fiddly in Power Automate's UI, and - secondly - because it's more modular and easier to edit in the case that the CRM option set (or the definition of which job roles correspond to which audience) is changed.
 
-##### Use a Compose action to create the $filter query
+##### Use a Compose action to create the filter query
 Concatenate the items in your `send_to` array using this operation in a Compose action. (Replace `jobrole` with your actual Dataverse column name.)
 
 ```plaintext
