@@ -20,7 +20,7 @@
     - [Get attachments](#get-attachments)
     - [Make HTTP request](#make-http-request)
   - [Flow B](#flow-b)
-    - [Trigger](#trigger)
+    - [Trigger](#trigger-1)
     - [Send email](#send-email)
       - [Add email signature inline image](#add-email-signature-inline-image)
       - [Add attachments](#add-attachments)
